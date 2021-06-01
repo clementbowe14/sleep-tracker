@@ -20,3 +20,6 @@ Back-end
 
 All entries must be stored in persistent storage on the server where it can be fetched at any time. Use databases and Rest APIs to fetch the data.
 Write backend APIs to read, write, and update entries.
+
+Technologies Used:
+React, Redux, Django,
