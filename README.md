@@ -24,3 +24,6 @@ Back-end
 
 Technologies Used:
 React, Redux, Django,
+
+Current blocker:
+token authentication of the user
