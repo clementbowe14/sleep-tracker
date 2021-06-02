@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from sleep.models import views.py
+from sleep.models import Sleep
 
 
 
