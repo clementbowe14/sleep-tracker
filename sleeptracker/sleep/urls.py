@@ -1,10 +1,9 @@
 from rest_framework import routers
 from django.urls import path
-from sleep import views
+from .views import SleepViewSet 
+
 
 router = routers.DefaultRouter()
+router.register(r'api/sleep', SleepViewSet, 'sleep')
 
-urlpatterns = [
-    path('sleep/', SleepViewSet, 'sleep'),
-    path('sleep/<int:pk>', views.SleepDetail.as_view()),
-]
+urlpatterns = router.urls
