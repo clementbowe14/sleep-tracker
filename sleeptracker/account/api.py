@@ -1,5 +1,6 @@
 from rest_framework import generics, permissions
 from rest_framework.response import Response
+from django.contrib.auth.models import User
 from .serializers import UserSerializer, RegisterSerializer, LoginSerializer
 from rest_framework.authtoken.models import Token
 
@@ -22,10 +23,10 @@ class LoginAPI(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
-        token = Token.objects.get_or_create(user=user)
+        token = Token.objects.get_or_create(user=User.objects.get(id=user.id))
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
-            "token": token
+            "token": token[1]
         })
 
 # Get User Api
