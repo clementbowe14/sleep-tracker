@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 
 #UserSerializer
 class UserSerializer(serializers.ModelSerializer):
@@ -15,7 +16,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
     
     def create(self, validated_data):
-        user = User.objects.create_user(validated_data['username'], validated_data['password'], validated_data['email'])
+        user = User.objects.create_user(username=validated_data['username'], password=validated_data['password'], email=validated_data['email'])
+        Token.objects.create(user=user)
 
         return user
 
@@ -25,6 +27,6 @@ class LoginSerializer(serializers.Serializer):
     
     def validate(self, data):
         user = authenticate(**data)
-        if user and is:
+        if user:
             return user
         raise serializers.ValidationError("Incorrect Credentials")
