@@ -5,9 +5,8 @@ const SplashPage = (props) =>{
 
     return (
         
-        <Box xl
+        <Box 
         bgGradient="linear(to-l, #7928CA,#FF0080)"
-        minH="100%"
         >
         
         </Box>
