@@ -20,10 +20,10 @@ class LoginAPI(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        user_login_serializer = self.get_serializer(data=request.data)
+        user_login_serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
-        token = Token.objects.get_or_create(user=User.objects.get(id=user.id))
+        user_token = Token.objects.get_or_create(user=User.objects.get(id=user.id))
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
             "token": token[1]
