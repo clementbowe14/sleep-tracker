@@ -1,12 +1,11 @@
 import React from 'react';
 
 import './App.css';
-import { ChakraProvider } from "@chakra-ui/react"
+import SplashPage from './pages/splashPage'
+
 function App() {
   return (
-    <div className="App">
-
-    </div>
+      <SplashPage/>
   );
 }
 
