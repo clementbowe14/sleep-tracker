@@ -19,7 +19,7 @@ class LoginAPI(generics.GenericAPIView):
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
-        
+
         #token_created is just a placeholder to handle the boolean value created in the tuple
         login_serializer = self.get_serializer(data=request.data)
         login_serializer.is_valid(raise_exception=True)
@@ -33,9 +33,7 @@ class LoginAPI(generics.GenericAPIView):
 # Get User Api
 
 class UserAPI(generics.RetrieveAPIView):
-    permission_classes = [
-        permissions.IsAuthenticated
-    ]
+
     serializer_class = UserSerializer
 
     def get_object(self):

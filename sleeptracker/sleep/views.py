@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Sleep
+from rest_framework.authentication import TokenAuthentication
 from sleep.serializers import SleepSerializer
 from rest_framework import viewsets, permissions
 # Create your views here.
@@ -7,6 +8,7 @@ from rest_framework import viewsets, permissions
 
 # create new sleep
 class SleepViewSet(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication]
     permission_classes = [
         permissions.IsAuthenticated,
     ]
