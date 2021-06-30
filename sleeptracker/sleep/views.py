@@ -16,7 +16,7 @@ class SleepViewSet(viewsets.ModelViewSet):
 
 #get all of the user's sleeps
     def get_queryset(self):
-        return self.request.user.Sleep.all()
+        return self.request.user.sleep.all()
     
 #save the the request to the user upon creation
     def perform_create(self, serializer):

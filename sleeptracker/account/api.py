@@ -6,6 +6,9 @@ from rest_framework.authtoken.models import Token
 
 #Register API
 class RegisterAPI(generics.GenericAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
     serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
@@ -16,6 +19,9 @@ class RegisterAPI(generics.GenericAPIView):
 
 # Login API
 class LoginAPI(generics.GenericAPIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
@@ -26,14 +32,16 @@ class LoginAPI(generics.GenericAPIView):
         user_object = login_serializer.validated_data
         user_token, token_created = Token.objects.get_or_create(user=user_object)
         return Response({
-            "user": UserSerializer(user_object, context=self.get_serializer_context()).data,
-            "token": user_token.key
+            "User": UserSerializer(user_object, context=self.get_serializer_context()).data,
+            "Token": user_token.key
         })
 
 # Get User Api
 
 class UserAPI(generics.RetrieveAPIView):
-
+    permission_classes = [
+        permissions.IsAuthenticated
+        ]
     serializer_class = UserSerializer
 
     def get_object(self):
